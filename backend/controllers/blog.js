@@ -3,9 +3,8 @@ const {  NotFoundError, BadRequestError } = require('../errors');
 const fs =  require('fs');
 
 const createBlog = async(req,res) => {    
-    const { title, content, topic, seoTitle, seoDescription  } = req.body;
-
-    const newBlog = new Blog({ title, content, topic, seoTitle, seoDescription  });
+    const { title, content, topic, seoTitle, seoDescription, image, altImage  } = req.body;    
+    const newBlog = new Blog({ title, content, topic, seoTitle, seoDescription, image, altImage   });
     await newBlog.save();
     res.status(201).json({
         "status":"success",
