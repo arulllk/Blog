@@ -6,6 +6,8 @@ const connectDB = require('./db/connection');
 const notFoundMiddleware = require('./middleware/not-found');
 const errorMiddleware = require('./middleware/error-handler');
 
+const upload = require('./middleware/multer.middleware');
+
 //router
 const blogRouter = require('./routes/blog');
 
@@ -13,7 +15,7 @@ app.use(express.json());
 
 
 //routes
-app.use('/api/v1/blog', blogRouter);
+app.use('/api/v1/blog', upload.single('image'), blogRouter);
 
  
 //error handlers
