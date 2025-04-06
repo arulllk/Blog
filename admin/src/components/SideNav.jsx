@@ -9,10 +9,13 @@ function SideNav() {
         </div>
         <ul className='px-[14px]'>
             <li className='flex'>
-                <NavLink className='p-[14px]' to="/admin/blog">Blogs</NavLink>
+                <NavLink className='p-[14px]' to="/blog">Blogs</NavLink>
             </li>
             <li className='flex'>
-                <NavLink className='p-[14px]' to="/admin/blog/new">Add Blog</NavLink>
+                <NavLink className='p-[14px]' to="/add/blog">Add Blog</NavLink>
+            </li>
+            <li className='flex'>
+                <NavLink className='p-[14px]' to="/practice">Practice</NavLink>
             </li>
         </ul>
     </div>
