@@ -16,10 +16,7 @@ function SideNav() {
             </li>
             <li className='flex'>
                 <NavLink className='p-[14px]' to="/practice">Practice</NavLink>
-            </li>
-            <li className='flex'>
-                <NavLink className='p-[14px]' to="/form">Practice</NavLink>
-            </li>
+            </li>           
         </ul>
     </div>
   )
