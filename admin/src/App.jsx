@@ -13,6 +13,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/add/blog" element={<AddBlog />} /> 
     <Route path="/practice" element={<Practice />} />
     
+    
   </Route>
 ))
 

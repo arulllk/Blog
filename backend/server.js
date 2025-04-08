@@ -14,13 +14,6 @@ const blogRouter = require('./routes/blog');
 app.use(express.json());
 
 
-//routes
-app.use('/api/v1/blog', upload.single('image'), blogRouter);
-
- 
-//error handlers
-app.use(notFoundMiddleware);
-app.use(errorMiddleware);
 
 const port = process.env.PORT ? parseInt(process.env.PORT,10) : 4000;
 const start = async () => {
@@ -29,6 +22,15 @@ const start = async () => {
         app.listen(port,()=>{
             console.log(`server is listening on port ${port}`);
         })
+
+        //routes
+        app.use('/api/v1/blog', upload.single('image'), blogRouter);
+
+        
+        //error handlers
+        app.use(notFoundMiddleware);
+        app.use(errorMiddleware);
+
     } catch (error) {
         console.log(error)
     }
