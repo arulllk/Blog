@@ -38,7 +38,7 @@
     }
   
     .uploaded-img-cont {
-      @apply w-full h-208 border border-dotted border-bolt-blue flex items-center justify-center rounded-xl overflow-hidden relative;
+      @apply w-full h-[208px]  border border-dotted border-bolt-blue flex items-center justify-center rounded-xl overflow-hidden relative;
     }
 
     .image-upload-cont { 

@@ -21,5 +21,5 @@ export const blogSchema = yup.object().shape({
             (value) => ['image/jpeg', 'image/png', 'image/gif'].includes(value.type)
         ),
     altImage: yup.string().required('Please add alt text to show on image for seo purpose'),
-    status:yup.boolean    
+    status:yup.boolean()    
 })
