@@ -7,13 +7,24 @@ import ImageUpload from '../components/ImageUpload';
 import { CloudUpload } from 'lucide-react';
 import { Trash2 } from 'lucide-react';
 import axios from 'axios';
+import SuccessErrorMessage  from '../components/SuccessErrorMessage';
 
 function AddBlog() {
 
   const [filePreview, setFilePreview] = useState(null);
+  const [showMessage, setShowMessage ] =  useState(null);
+
+
+  const displayMessage = (messageType,message) => {
+    setShowMessage(messageType, message)
+
+    setTimeout(()=>{
+      setShowMessage(null)
+    },5000)
+  }
 
   //registering form and its input field
-  const { register,handleSubmit,formState:{errors}, setValue } = useForm({
+  const { register,handleSubmit,formState:{errors}, setValue, reset } = useForm({
       resolver:yupResolver(blogSchema)
   });
 
@@ -31,39 +42,40 @@ function AddBlog() {
     setFilePreview(null);
   }
 
-  const onSubmit  =  async (data,errors) => {
-    console.log(errors);
+  const onSubmit  =  async (data,errors) => {    
     try {
-      const formData = new FormData();
-      
-      // Object.keys(values).forEach(key=>{     
-      //   formData.append(key,values[key])
-      // }) 
-
-      Object.keys(data).forEach(key=>{
-        console.log('key is ', key);
-         
-        console.log('data[key] ', data[key])
+      const formData = new FormData();           
+      Object.keys(data).forEach(key=>{   
         formData.append(key,data[key])
       });
 
-      for (let pair of formData.entries()) {
-        console.log(`check ${pair[0]}: ${pair[1]}`);
-      }
+      // for (let pair of formData.entries()) {
+      //   console.log(`check ${pair[0]}: ${pair[1]}`);
+      // }
 
-      const response = await axios.post('/api/v1/blog',data, {
+      const response = await axios.post('http://localhost:4000/api/v1/blog',formData, {
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'multipart/form-data',
         }
       });
-      console.log('form submitted successfully ', response)
+      const serverData =  response.data
+      console.log('serverData ' , serverData);
+      if(response.data.status === 'success') {
+        displayMessage({messageType:'success',message:serverData.message})        
+        reset();
+        setFilePreview(null);
+      }
+
+    
     } catch (error) {
-      console.log('Error submitting form ', error)
+       
+      displayMessage({messageType:'error',message:serverData.message})            
     }     
   }
 
   return (
     <>
+      { showMessage &&  <SuccessErrorMessage messageType={showMessage.messageType} message={showMessage.message} />} 
       <PageHeading heading="Add Blog" breadCrumb={[{label:'AddBlog',path:'/blog'}]} />
       {console.log(errors)}
       <form className='grid grid-cols-2 gap-y-2.5 gap-x-5' onSubmit={handleSubmit(onSubmit)}>

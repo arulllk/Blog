@@ -55,5 +55,13 @@
     .btn-custom:hover {
       @apply bg-white text-[#2275fc];
     }
+
+    .table-col-div {
+      @apply grid grid-cols-[1fr_1.5fr_300px_100px]  p-3 rounded-xl gap-2 items-center
+    }
+    
+    .table-heading {
+      @apply text-sm font-bold text-dreamless-sleep;
+    }
     
   }
