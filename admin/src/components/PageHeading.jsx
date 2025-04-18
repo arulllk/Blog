@@ -7,7 +7,7 @@ function PageHeading ({heading, breadCrumb}) {
         <div className='flex justify-between items-center mb-[27px]'>
             <h1 className='text-2xl text-black font-bold'>{heading}</h1>   
             {breadCrumb && 
-                <ul className='flex gap-10 text-xs text-black-water'>
+                <ul className='flex gap-2 text-xs text-black-water align-middle'>
                     <li><NavLink to="/">Home</NavLink></li>
                     { breadCrumb.map((item,index)=>{
                         return(
